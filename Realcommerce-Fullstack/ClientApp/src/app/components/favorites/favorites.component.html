@@ -1,0 +1,28 @@
+<div class="container">
+  <div>
+    <h3 class="text-center my-3">Favorites</h3>
+    <div class="row" *ngIf="favoriteList?.length > 0">
+      <div class="col-md-9">
+        <div class="row" *ngIf="weather != null">
+          <div class="col-md-6">
+            <div class="col">
+              <p>{{selectedCity?.localizedName}}</p>
+              <p>{{weather?.temperatureC}} {{weather?.weatherText}}</p>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <p>
+          <button type="button" class="cityBtn" (click)="deleteFavorite(selectedCity)"><i class="bi bi-heart"></i>remove from favorite</button>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3 bl">
+        <p *ngFor="let favorite of favoriteList">
+          <button type="button" class="cityBtn" (click)="getCurrentWeather(favorite)">{{favorite?.localizedName}}</button>
+        </p>
+      </div>
+    </div>   
+  </div>
+
+</div>

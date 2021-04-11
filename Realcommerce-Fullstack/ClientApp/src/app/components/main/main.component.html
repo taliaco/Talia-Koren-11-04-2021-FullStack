@@ -1,0 +1,44 @@
+<div class="container">
+  <div>
+    <h3 class="text-center my-3">Search for city:</h3>
+    <form [formGroup]="citySearchForm" (ngSubmit)="searchCities(citySearchForm.value)">
+      <div class="row ">
+        <div class="col-md-3 text-center ">
+          <button type="submit" class="btn btn-success btn-md">
+            Search
+          </button>
+        </div>
+        <div class="col-md-8 form-group">
+          <input class="form-control"
+                 type="text"
+                 id="weatherCity"
+                 placeholder="Please input a City"
+                 formControlName="city" />
+        </div>
+      </div>
+
+    </form>
+  </div>
+  <div class="row" *ngIf="citiesList?.length > 0">
+    <div class="col-md-9" >
+      <div class="row" *ngIf="weather != null">
+        <div class="col-md-6">
+          <div class="col">
+            <p>{{selectedCity?.LocalizedName}}</p>
+            <p>{{weather?.temperatureC}} {{weather?.weatherText}}</p>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <p>
+            <button type="button" class="cityBtn" (click)="addToFavorites()"><i class="bi bi-heart-fill"></i>add to favorite</button>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3 bl">
+      <p *ngFor="let city of citiesList">
+        <button type="button" class="cityBtn" (click)="getCurrentWeather(city)">{{city.LocalizedName}}</button>
+      </p>
+    </div>
+  </div>
+</div>
